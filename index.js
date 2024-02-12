@@ -82,3 +82,31 @@ scene.add(stars);
 const sunLight = new THREE.DirectionalLight(0xffffff);
 sunLight.position.set(-2, 0.5, 1.5);
 scene.add(sunLight);
+
+// Animation loop: 
+// The animate function is defined to continuously rotate the Earth and its associated meshes, as well as the starfield, creating a dynamic scene. 
+// The requestAnimationFrame method is used to schedule the next frame of animation. 
+function animate() {
+  requestAnimationFrame(animate);
+
+  earthMesh.rotation.y += 0.002;
+  lightsMesh.rotation.y += 0.002;
+  cloudsMesh.rotation.y += 0.0023;
+  glowMesh.rotation.y += 0.002;
+  stars.rotation.y -= 0.0002;
+  renderer.render(scene, camera);
+}
+
+animate();
+
+// Resize handler: 
+// The handleWindowResize function updates the camera's aspect ratio and renderer size when the window is resized, ensuring the scene remains correctly proportioned.
+function handleWindowResize () {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+// Event listener: 
+// An event listener is added to the window to call handleWindowResize when the resize event occurs, keeping the scene responsive to changes in the browser window size 4.
+window.addEventListener('resize', handleWindowResize, false);
