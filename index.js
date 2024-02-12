@@ -34,3 +34,39 @@ const loader = new THREE.TextureLoader();
 // A THREE.IcosahedronGeometry is created for the Earth sphere with a specified level of detail. 
 // A THREE.MeshPhongMaterial is then applied to the geometry to give it a realistic appearance with lighting. 
 // The material properties include maps for textures and bump scaling.
+const geometry = new THREE.IcosahedronGeometry(1, detail);
+const material = new THREE.MeshPhongMaterial({
+  map: loader.load("./textures/00_earthmap1k.jpg"),
+  specularMap: loader.load("./textures/02_earthspec1k.jpg"),
+  bumpMap: loader.load("./textures/01_earthbump1k.jpg"),
+  bumpScale: 0.04,
+});
+const earthMesh = new THREE.Mesh(geometry, material);
+earthGroup.add(earthMesh);
+
+// Clouds and glow effects: 
+// Additional meshes are created with materials for clouds and glow effects, using similar textures and blending modes as the Earth model. 
+// They are scaled slightly larger to simulate atmospheric distortion.
+const lightsMat = new THREE.MeshBasicMaterial({
+  map: loader.load("./textures/03_earthlights1k.jpg"),
+  blending: THREE.AdditiveBlending,
+});
+const lightsMesh = new THREE.Mesh(geometry, lightsMat);
+earthGroup.add(lightsMesh);
+
+const cloudsMat = new THREE.MeshStandardMaterial({
+  map: loader.load("./textures/04_earthcloudmap.jpg"),
+  transparent: true,
+  opacity: 0.8,
+  blending: THREE.AdditiveBlending,
+  alphaMap: loader.load('./textures/05_earthcloudmaptrans.jpg'),
+  // alphaTest: 0.3,
+});
+const cloudsMesh = new THREE.Mesh(geometry, cloudsMat);
+cloudsMesh.scale.setScalar(1.003);
+earthGroup.add(cloudsMesh);
+
+const fresnelMat = getFresnelMat();
+const glowMesh = new THREE.Mesh(geometry, fresnelMat);
+glowMesh.scale.setScalar(1.01);
+earthGroup.add(glowMesh);
