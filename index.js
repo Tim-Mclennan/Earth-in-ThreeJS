@@ -96,6 +96,7 @@ function animate() {
   stars.rotation.y -= 0.0002;
   renderer.render(scene, camera);
 }
+
 animate();
 
 // Resize handler: 
