@@ -70,3 +70,15 @@ const fresnelMat = getFresnelMat();
 const glowMesh = new THREE.Mesh(geometry, fresnelMat);
 glowMesh.scale.setScalar(1.01);
 earthGroup.add(glowMesh);
+
+// Starfield: 
+// A starfield is added to the scene by calling getStarfield, which presumably returns a collection of stars. 
+// The number of stars is specified by passing { numStars: 2000 } as an argument.
+const stars = getStarfield({numStars: 2000});
+scene.add(stars);
+
+// Sun light: 
+// A THREE.DirectionalLight is added to represent the Sun, positioned off-center relative to the Earth.
+const sunLight = new THREE.DirectionalLight(0xffffff);
+sunLight.position.set(-2, 0.5, 1.5);
+scene.add(sunLight);
