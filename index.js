@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { OrbitControls } from 'jsm/controls/OrbitControls.js';
 
 import getStarfield from "./src/getStarfield.js";
-import { getFresnelMat } from "./src/getFresnelMat.js";
+import { getFresnelMat } from "./src/getFresnalMat.js";
 
 // Scene setup: 
 // The following lines define the scene dimensions (w and h) and initialize the scene, camera, and renderer. 
