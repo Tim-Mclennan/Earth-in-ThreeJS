@@ -6,7 +6,8 @@ Earth-in-ThreeJS is an immersive 3D visualization of Earth, built using the Thre
 
 You can explore the deployed version of Earth-in-ThreeJS here:
 
-https://earth-in-threejs.vercel.app/
+[https://earth-in-three-js.vercel.app/
+](https://earth-in-three-js.vercel.app/)
 
 ## 📋 Table of Contents
 
